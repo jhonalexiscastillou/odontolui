@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Atención Odontológica Premium a Domicilio</title>
+<title>Odontología Premium a Domicilio | Medellín</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- FullCalendar -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
 <style>
 :root{
@@ -14,7 +19,7 @@
   --soft:#f5f6fa;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Montserrat',sans-serif;
@@ -43,28 +48,29 @@ body{
 
 .hero-content{
   position:relative;
-  max-width:750px;
+  max-width:800px;
   color:white;
 }
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:3rem;
+  font-size:3.1rem;
   margin-bottom:20px;
 }
 
 .hero p{
   font-size:1.05rem;
-  opacity:0.95;
+  line-height:1.7;
 }
 
 /* SECTIONS */
 section{
   max-width:1100px;
   margin:auto;
-  padding:80px 20px;
+  padding:90px 20px;
 }
 
+/* STATS */
 .stats{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -74,10 +80,10 @@ section{
 
 .stat{
   background:white;
-  padding:35px 25px;
-  border-radius:24px;
+  padding:35px;
+  border-radius:26px;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  box-shadow:0 20px 45px rgba(0,0,0,0.08);
 }
 
 .stat strong{
@@ -87,49 +93,35 @@ section{
 }
 
 .stat span{
-  font-size:0.85rem;
+  font-size:.85rem;
   color:#666;
 }
 
-/* FORM */
+/* FORM / CALENDAR */
 .form-box{
   background:white;
   padding:55px;
   border-radius:30px;
-  box-shadow:0 30px 70px rgba(0,0,0,0.1);
-  max-width:650px;
-  margin:auto;
+  box-shadow:0 30px 70px rgba(0,0,0,0.12);
 }
 
 .form-box h2{
   font-family:'Playfair Display',serif;
   text-align:center;
   color:var(--primary);
+  margin-bottom:10px;
 }
 
 .form-box p{
   text-align:center;
-  font-size:0.9rem;
+  font-size:.9rem;
   color:#666;
   margin-bottom:30px;
 }
 
-.agenda-form input,
-.agenda-form select,
-.agenda-form button{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid #ddd;
-  margin-bottom:15px;
-}
-
-.agenda-form button{
-  background:var(--primary);
-  color:white;
-  border:none;
-  font-size:1rem;
-  cursor:pointer;
+#calendar{
+  max-width:900px;
+  margin:auto;
 }
 
 /* EXPERIENCE */
@@ -142,6 +134,7 @@ section{
 .experience-item h3{
   font-family:'Playfair Display',serif;
   color:var(--primary);
+  margin-bottom:10px;
 }
 
 /* TESTIMONIAL */
@@ -161,23 +154,23 @@ section{
 .testimonial span{
   display:block;
   margin-top:15px;
-  font-size:0.85rem;
+  font-size:.85rem;
   color:#777;
 }
 
-/* WHATSAPP */
+/* WHATSAPP FLOAT */
 .whatsapp-float{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#25D366;
   width:60px;
   height:60px;
+  background:#25D366;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 12px 28px rgba(0,0,0,0.3);
+  box-shadow:0 12px 28px rgba(0,0,0,.3);
   z-index:999;
 }
 
@@ -187,6 +180,7 @@ section{
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-content">
     <h1>Cuidado consciente a domicilio</h1>
@@ -199,6 +193,7 @@ section{
   </div>
 </div>
 
+<!-- STATS -->
 <section>
   <div class="stats">
     <div class="stat"><strong>+12 años</strong><span>Experiencia clínica</span></div>
@@ -207,23 +202,16 @@ section{
   </div>
 </section>
 
+<!-- CALENDAR -->
 <section>
   <div class="form-box">
     <h2>Reservar cita</h2>
-    <p>Selecciona una fecha para ver horarios disponibles</p>
-
-    <form class="agenda-form">
-      <input type="text" placeholder="Nombre completo" required>
-      <input type="tel" placeholder="Número de contacto" required>
-      <input type="date" id="fecha" required>
-      <select id="hora" required>
-        <option value="">Selecciona una hora</option>
-      </select>
-      <button type="submit">Agendar por WhatsApp</button>
-    </form>
+    <p>Selecciona un horario disponible</p>
+    <div id="calendar"></div>
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section>
   <h2 style="text-align:center;font-family:'Playfair Display';margin-bottom:40px;">
     Una experiencia pensada para ti
@@ -232,11 +220,11 @@ section{
   <div class="experience-grid">
     <div class="experience-item">
       <h3>Ambiente de calma</h3>
-      <p>Respeto por tu energía, tu tiempo y tu espacio.</p>
+      <p>Respeto por tu energía y tu espacio personal.</p>
     </div>
     <div class="experience-item">
       <h3>Profesionalismo consciente</h3>
-      <p>Técnica, sensibilidad y precisión en equilibrio.</p>
+      <p>Técnica y sensibilidad en equilibrio.</p>
     </div>
     <div class="experience-item">
       <h3>Privacidad absoluta</h3>
@@ -245,6 +233,7 @@ section{
   </div>
 </section>
 
+<!-- TESTIMONIAL -->
 <section class="testimonial">
   <blockquote>
     “Desde el primer momento se siente la tranquilidad.
@@ -253,64 +242,71 @@ section{
   </blockquote>
 </section>
 
+<!-- WHATSAPP -->
 <a class="whatsapp-float" href="https://wa.me/573117358170" target="_blank">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
 
+<!-- SCRIPT -->
 <script>
 const whatsappNumber="573117358170";
 
-const noDisponibles={
-  "2026-03-15":"FULL",
-  "2026-03-12":["09:30","14:00"]
-};
-
-const horasBase=[
-  {v:"08:00",l:"08:00 AM"},
-  {v:"09:30",l:"09:30 AM"},
-  {v:"11:00",l:"11:00 AM"},
-  {v:"14:00",l:"02:00 PM"},
-  {v:"15:30",l:"03:30 PM"},
-  {v:"17:00",l:"05:00 PM"}
+// BLOQUEOS (simulan Google Calendar)
+const eventosBloqueados=[
+  {
+    title:"No disponible",
+    start:"2026-03-15",
+    end:"2026-03-16",
+    display:"background"
+  },
+  {
+    title:"Ocupado",
+    start:"2026-03-12T09:30",
+    end:"2026-03-12T10:30"
+  },
+  {
+    title:"Ocupado",
+    start:"2026-03-12T14:00",
+    end:"2026-03-12T15:00"
+  }
 ];
 
-const fechaInput=document.getElementById("fecha");
-const horaSelect=document.getElementById("hora");
+document.addEventListener("DOMContentLoaded",()=>{
+  const calendar=new FullCalendar.Calendar(
+    document.getElementById("calendar"),
+    {
+      locale:"es",
+      initialView:"timeGridWeek",
+      selectable:true,
+      allDaySlot:false,
+      slotMinTime:"08:00:00",
+      slotMaxTime:"18:00:00",
+      height:"auto",
 
-fechaInput.addEventListener("change",()=>{
-  horaSelect.innerHTML='<option value="">Selecciona una hora</option>';
-  const f=fechaInput.value;
+      businessHours:{
+        daysOfWeek:[1,2,3,4,5],
+        startTime:"08:00",
+        endTime:"18:00"
+      },
 
-  if(noDisponibles[f]==="FULL"){
-    alert("Este día no está disponible");
-    fechaInput.value="";
-    return;
-  }
+      events:eventosBloqueados,
 
-  horasBase.forEach(h=>{
-    const o=document.createElement("option");
-    o.value=h.v;
-    o.textContent=h.l;
-    if(Array.isArray(noDisponibles[f]) && noDisponibles[f].includes(h.v)){
-      o.disabled=true;
-      o.textContent+=" (No disponible)";
+      select(info){
+        const fecha=info.startStr.split("T")[0];
+        const hora=info.startStr.split("T")[1].substring(0,5);
+        const msg=`Hola ✨ Deseo agendar una cita el ${fecha} a las ${hora}.`;
+        window.open(
+          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,
+          "_blank"
+        );
+      },
+
+      eventOverlap:false,
+      selectOverlap:false
     }
-    horaSelect.appendChild(o);
-  });
-});
+  );
 
-document.querySelector(".agenda-form").addEventListener("submit",function(e){
-  e.preventDefault();
-  const n=this.querySelector("input[type=text]").value;
-  const t=this.querySelector("input[type=tel]").value;
-  const f=fechaInput.value;
-  const h=horaSelect.value;
-
-  const msg=`Hola ✨ Soy ${n}. Deseo agendar una cita el ${f} a las ${h}. Teléfono: ${t}.`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
-
-  this.innerHTML=`<p style="font-family:'Playfair Display';font-size:1.4rem;color:#1f2a44;text-align:center;">
-  Gracias ✨<br><span style="font-size:.9rem;">Pronto te contactaremos</span></p>`;
+  calendar.render();
 });
 </script>
 
