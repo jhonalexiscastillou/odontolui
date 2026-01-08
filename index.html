@@ -22,7 +22,7 @@ body{
   color:#333;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 .hero{
   min-height:90vh;
   background:url('LUISA.jpg') center/cover no-repeat;
@@ -38,10 +38,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.25)
-  );
+  background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.25));
 }
 
 .hero-content{
@@ -57,11 +54,11 @@ body{
 }
 
 .hero p{
-  font-size:1.1rem;
+  font-size:1.05rem;
   opacity:0.95;
 }
 
-/* ===== STATS ===== */
+/* SECTIONS */
 section{
   max-width:1100px;
   margin:auto;
@@ -94,7 +91,7 @@ section{
   color:#666;
 }
 
-/* ===== FORM ===== */
+/* FORM */
 .form-box{
   background:white;
   padding:55px;
@@ -108,7 +105,6 @@ section{
   font-family:'Playfair Display',serif;
   text-align:center;
   color:var(--primary);
-  margin-bottom:10px;
 }
 
 .form-box p{
@@ -136,7 +132,7 @@ section{
   cursor:pointer;
 }
 
-/* ===== EXPERIENCE ===== */
+/* EXPERIENCE */
 .experience-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -146,10 +142,9 @@ section{
 .experience-item h3{
   font-family:'Playfair Display',serif;
   color:var(--primary);
-  margin-bottom:10px;
 }
 
-/* ===== TESTIMONIAL ===== */
+/* TESTIMONIAL */
 .testimonial{
   background:linear-gradient(135deg,#fff,#eef1f7);
   text-align:center;
@@ -170,7 +165,7 @@ section{
   color:#777;
 }
 
-/* ===== WHATSAPP FLOAT ===== */
+/* WHATSAPP */
 .whatsapp-float{
   position:fixed;
   bottom:20px;
@@ -186,48 +181,36 @@ section{
   z-index:999;
 }
 
-.whatsapp-float img{
-  width:32px;
-}
+.whatsapp-float img{width:32px}
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-content">
     <h1>Cuidado consciente a domicilio</h1>
     <p>
-      Odontología premium, profesional y armoniosa.
-      Atención exclusiva en Medellín para quienes valoran el detalle. 
-Atendidos por la Dr. Luisa Fernanda Escobar Posada. odontologa general y especialista en endodoncia.
-
+      Odontología premium, profesional y armoniosa.<br>
+      Atención exclusiva en Medellín.<br><br>
+      <strong>Dra. Luisa Fernanda Escobar Posada</strong><br>
+      Odontóloga general · Especialista en Endodoncia
     </p>
   </div>
 </div>
 
 <section>
   <div class="stats">
-    <div class="stat">
-      <strong>+12 años</strong>
-      <span>Experiencia clínica</span>
-    </div>
-    <div class="stat">
-      <strong>Atención VIP</strong>
-      <span>Servicio personalizado</span>
-    </div>
-    <div class="stat">
-      <strong>Medellín</strong>
-      <span>Domicilios exclusivos</span>
-    </div>
+    <div class="stat"><strong>+12 años</strong><span>Experiencia clínica</span></div>
+    <div class="stat"><strong>Atención VIP</strong><span>Servicio personalizado</span></div>
+    <div class="stat"><strong>Medellín</strong><span>Domicilios exclusivos</span></div>
   </div>
 </section>
 
 <section>
   <div class="form-box">
     <h2>Reservar cita</h2>
-    <p>Selecciona una fecha y hora disponible</p>
+    <p>Selecciona una fecha para ver horarios disponibles</p>
 
     <form class="agenda-form">
       <input type="text" placeholder="Nombre completo" required>
@@ -249,7 +232,7 @@ Atendidos por la Dr. Luisa Fernanda Escobar Posada. odontologa general y especia
   <div class="experience-grid">
     <div class="experience-item">
       <h3>Ambiente de calma</h3>
-      <p>Respeto por tu energía, tu tiempo y tu espacio personal.</p>
+      <p>Respeto por tu energía, tu tiempo y tu espacio.</p>
     </div>
     <div class="experience-item">
       <h3>Profesionalismo consciente</h3>
@@ -257,7 +240,7 @@ Atendidos por la Dr. Luisa Fernanda Escobar Posada. odontologa general y especia
     </div>
     <div class="experience-item">
       <h3>Privacidad absoluta</h3>
-      <p>Un servicio exclusivo, discreto y confiable.</p>
+      <p>Servicio exclusivo y discreto.</p>
     </div>
   </div>
 </section>
@@ -282,9 +265,6 @@ const noDisponibles={
   "2026-03-12":["09:30","14:00"]
 };
 
-const fechaInput=document.getElementById("fecha");
-const horaSelect=document.getElementById("hora");
-
 const horasBase=[
   {v:"08:00",l:"08:00 AM"},
   {v:"09:30",l:"09:30 AM"},
@@ -294,318 +274,8 @@ const horasBase=[
   {v:"17:00",l:"05:00 PM"}
 ];
 
-fechaInput.addEventListener("change",()=>{
-  horaSelect.innerHTML='<option value="">Selecciona una hora</option>';
-  const f=fechaInput.value;
-
-  if(noDisponibles[f]==="FULL"){
-    alert("Este día no está disponible");
-    fechaInput.value="";
-    return;
-  }
-
-  horasBase.forEach(h=>{
-    const o=document.createElement("option");
-    o.value=h.v;
-    o.textContent=h.l;
-    if(Array.isArray(noDisponibles[f]) && noDisponibles[f].includes(h.v)){
-      o.disabled=true;
-      o.textContent+=" (No disponible)";
-    }<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Atención Odontológica Premium a Domicilio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --primary:#1f2a44;
-  --soft:#f5f6fa;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-  font-family:'Montserrat',sans-serif;
-  background:var(--soft);
-  color:#333;
-}
-
-/* ===== HERO ===== */
-.hero{
-  min-height:90vh;
-  background:url('LUISA.jpg') center/cover no-repeat;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.25)
-  );
-}
-
-.hero-content{
-  position:relative;
-  max-width:750px;
-  color:white;
-}
-
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:3rem;
-  margin-bottom:20px;
-}
-
-.hero p{
-  font-size:1.1rem;
-  opacity:0.95;
-}
-
-/* ===== STATS ===== */
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:80px 20px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
-  margin-top:-80px;
-}
-
-.stat{
-  background:white;
-  padding:35px 25px;
-  border-radius:24px;
-  text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.08);
-}
-
-.stat strong{
-  font-family:'Playfair Display',serif;
-  font-size:1.7rem;
-  color:var(--primary);
-}
-
-.stat span{
-  font-size:0.85rem;
-  color:#666;
-}
-
-/* ===== FORM ===== */
-.form-box{
-  background:white;
-  padding:55px;
-  border-radius:30px;
-  box-shadow:0 30px 70px rgba(0,0,0,0.1);
-  max-width:650px;
-  margin:auto;
-}
-
-.form-box h2{
-  font-family:'Playfair Display',serif;
-  text-align:center;
-  color:var(--primary);
-  margin-bottom:10px;
-}
-
-.form-box p{
-  text-align:center;
-  font-size:0.9rem;
-  color:#666;
-  margin-bottom:30px;
-}
-
-.agenda-form input,
-.agenda-form select,
-.agenda-form button{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:1px solid #ddd;
-  margin-bottom:15px;
-}
-
-.agenda-form button{
-  background:var(--primary);
-  color:white;
-  border:none;
-  font-size:1rem;
-  cursor:pointer;
-}
-
-/* ===== EXPERIENCE ===== */
-.experience-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:40px;
-}
-
-.experience-item h3{
-  font-family:'Playfair Display',serif;
-  color:var(--primary);
-  margin-bottom:10px;
-}
-
-/* ===== TESTIMONIAL ===== */
-.testimonial{
-  background:linear-gradient(135deg,#fff,#eef1f7);
-  text-align:center;
-}
-
-.testimonial blockquote{
-  max-width:750px;
-  margin:auto;
-  font-family:'Playfair Display',serif;
-  font-size:1.25rem;
-  color:var(--primary);
-}
-
-.testimonial span{
-  display:block;
-  margin-top:15px;
-  font-size:0.85rem;
-  color:#777;
-}
-
-/* ===== WHATSAPP FLOAT ===== */
-.whatsapp-float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 12px 28px rgba(0,0,0,0.3);
-  z-index:999;
-}
-
-.whatsapp-float img{
-  width:32px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>Cuidado consciente a domicilio</h1>
-    <p>
-      Odontología premium, profesional y armoniosa.
-      Atención exclusiva en Medellín para quienes valoran el detalle. 
-Atendidos por la Dr. Luisa Fernanda Escobar Posada. odontologa general y especialista en endodoncia.
-
-    </p>
-  </div>
-</div>
-
-<section>
-  <div class="stats">
-    <div class="stat">
-      <strong>+12 años</strong>
-      <span>Experiencia clínica</span>
-    </div>
-    <div class="stat">
-      <strong>Atención VIP</strong>
-      <span>Servicio personalizado</span>
-    </div>
-    <div class="stat">
-      <strong>Medellín</strong>
-      <span>Domicilios exclusivos</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="form-box">
-    <h2>Reservar cita</h2>
-    <p>Selecciona una fecha y hora disponible</p>
-
-    <form class="agenda-form">
-      <input type="text" placeholder="Nombre completo" required>
-      <input type="tel" placeholder="Número de contacto" required>
-      <input type="date" id="fecha" required>
-      <select id="hora" required>
-        <option value="">Selecciona una hora</option>
-      </select>
-      <button type="submit">Agendar por WhatsApp</button>
-    </form>
-  </div>
-</section>
-
-<section>
-  <h2 style="text-align:center;font-family:'Playfair Display';margin-bottom:40px;">
-    Una experiencia pensada para ti
-  </h2>
-
-  <div class="experience-grid">
-    <div class="experience-item">
-      <h3>Ambiente de calma</h3>
-      <p>Respeto por tu energía, tu tiempo y tu espacio personal.</p>
-    </div>
-    <div class="experience-item">
-      <h3>Profesionalismo consciente</h3>
-      <p>Técnica, sensibilidad y precisión en equilibrio.</p>
-    </div>
-    <div class="experience-item">
-      <h3>Privacidad absoluta</h3>
-      <p>Un servicio exclusivo, discreto y confiable.</p>
-    </div>
-  </div>
-</section>
-
-<section class="testimonial">
-  <blockquote>
-    “Desde el primer momento se siente la tranquilidad.
-    Una atención impecable y diferente.”
-    <span>— Paciente privada, Medellín</span>
-  </blockquote>
-</section>
-
-<a class="whatsapp-float" href="https://wa.me/573117358170" target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-</a>
-
-<script>
-const whatsappNumber="573117358170";
-
-const noDisponibles={
-  "2026-03-15":"FULL",
-  "2026-03-12":["09:30","14:00"]
-};
-
 const fechaInput=document.getElementById("fecha");
 const horaSelect=document.getElementById("hora");
-
-const horasBase=[
-  {v:"08:00",l:"08:00 AM"},
-  {v:"09:30",l:"09:30 AM"},
-  {v:"11:00",l:"11:00 AM"},
-  {v:"14:00",l:"02:00 PM"},
-  {v:"15:30",l:"03:30 PM"},
-  {v:"17:00",l:"05:00 PM"}
-];
 
 fechaInput.addEventListener("change",()=>{
   horaSelect.innerHTML='<option value="">Selecciona una hora</option>';
@@ -636,32 +306,10 @@ document.querySelector(".agenda-form").addEventListener("submit",function(e){
   const f=fechaInput.value;
   const h=horaSelect.value;
 
-  const msg=`Hola, soy ${n}. Deseo agendar una cita el ${f} a las ${h}. Mi número es ${t}.`;
+  const msg=`Hola ✨ Soy ${n}. Deseo agendar una cita el ${f} a las ${h}. Teléfono: ${t}.`;
   window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
 
-  this.innerHTML=`<p style="font-family:'Playfair Display';font-size:1.4rem;color:#1f2a44;">
-  Gracias ✨<br><span style="font-size:.9rem;">Pronto te contactaremos</span></p>`;
-});
-</script>
-
-</body>
-</html>
-
-    horaSelect.appendChild(o);
-  });
-});
-
-document.querySelector(".agenda-form").addEventListener("submit",function(e){
-  e.preventDefault();
-  const n=this.querySelector("input[type=text]").value;
-  const t=this.querySelector("input[type=tel]").value;
-  const f=fechaInput.value;
-  const h=horaSelect.value;
-
-  const msg=`Hola, soy ${n}. Deseo agendar una cita el ${f} a las ${h}. Mi número es ${t}.`;
-  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
-
-  this.innerHTML=`<p style="font-family:'Playfair Display';font-size:1.4rem;color:#1f2a44;">
+  this.innerHTML=`<p style="font-family:'Playfair Display';font-size:1.4rem;color:#1f2a44;text-align:center;">
   Gracias ✨<br><span style="font-size:.9rem;">Pronto te contactaremos</span></p>`;
 });
 </script>
